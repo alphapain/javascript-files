@@ -1,0 +1,2 @@
+alert("hello")  // gives error bcoz alert is not defined in node js, there is a different syntax for using alert in node.js . it is available in node.js
+// gives error because we are using node.js, not browser.
