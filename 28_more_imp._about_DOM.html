@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM indepth</title>
+</head>
+<body style="background-color: #212121; color: antiquewhite">
+    <!-- 1. creating a div with four child  -->
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+    <script>
+        // 1. select parent element and access values of it
+        
+        const parent = document.querySelector(".parent")
+        // console.log(parent); // we get our complete parent element.
+
+        //console.log(parent.children); // get HTMLcollection of all children
+        // HTMLcollection is array like structure
+
+        //console.log(parent.children[0]); // can access any element using index as similar in arrays.
+         // can also use .innerText or .innerHTML with it
+
+         // we cant use forEach on HTMLcollection directly we have to convert it in Array but our normal for loop can be used on HTMLcollection
+         for (let i = 0; i < parent.children.length; i++) {
+
+            // console.log(parent.children[i]);
+
+            console.log(parent.children[i].innerHTML);
+
+            // parent hame complete data deta hai lekin parent.children HTMLcollection deta hai or usi pr hmne yaha loop execute kiya hai or parent.children.length mtlb uski total length pr looping krne k liye use kiya hai
+         }
+
+         // adding some styling
+
+         parent.children[0].style.color = "green"
+         parent.children[1].style.color = "red"
+         parent.children[2].style.color = "white"
+         parent.children[3].style.color = "yellow"
+
+         parent.children[0].style.padding = "10px"
+         parent.children[1].style.padding = "10px"
+         parent.children[2].style.padding = "10px"
+         parent.children[3].style.padding = "10px"
+
+
+         // more properties
+        //  console.log(parent.firstElementChild); // target first element
+        //  console.log(parent.lastElementChild);  // target last element
+
+        //  jaise hm parent se child pe move kr rhe hai uper waise hi child se parent pe bhi move kr skte hain...
+
+        const dayOne = document.querySelector('.day') // querySelector sirf firs element ko target krta hai jo ki monday hai
+        console.log(dayOne); 
+
+        // lekin agr hmare paas child hai or hme direct parent pe jana hai to uske liye
+        console.log(dayOne.parentElement); // give parent element
+
+        // nextElementSibling
+        console.log(dayOne.nextElementSibling); // give next element >> tuesday
+
+        // more and imp:-
+        console.log("Nodes :- ", parent.childNodes); // gives a nodelist with value 9
+        /*
+            Nodes :-  
+NodeList(9) [text, div.day, text, div.day, text, div.day, text, div.day, text]
+0: text    ----   line break after  >>     <div class="parent">
+1: div.day ----   <div class="day">Monday</div>
+2: text    ----   line break
+3: div.day ----   <div class="day">Tuesday</div>
+4: text    ----   line break 
+5: div.day ----   <div class="day">Wednesday</div>
+6: text    ----   line break
+7: div.day ----   <div class="day">Thursday</div>
+8: text    ----   line break
+length: 9
+[[Prototype]]: NodeList  */
+ // agr hm ek line break k just baad ek or line break add krte hai to vo browser usko count nhi krta or nodelist k element me isse koi change nhi aayega , lekin agr ek normal line add krte hai to node list element 9 se direct 11 ho jayenge q ki ek element line k liye or ek line break k liye...
+    </script>
+
+
+        
+        
+       
+</html>

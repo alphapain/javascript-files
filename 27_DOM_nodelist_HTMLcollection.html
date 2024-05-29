@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM learning</title>
+</head>
+<body>
+    <div class="black">
+        <h1 id = "title" class="heading">Document object model<span style="display: none;"> text text</span></h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+
+        <!-- selection by id  -->
+        <!-- // selection by class -->
+        <!-- // .getAttribute >>>>>  document.getElementById('title').getAttribute(id) >>> 'title' -->
+
+        <!-- .setAttribute >>> hmesha selected element ki value ko overwrite krdeta hai , returns undefined but overright the selected attribute >>>> document.getElementById('title').setAttribute('id', 'text') >>> yaha id ki value text ho jayegi
+            // mutiple attribute values bhi pass kr skte hain >> document.getElementById('title').setAttribute('heading', 'my text')
+
+
+ -->
+
+    <!-- about innerHTML, innerText, innerContent -->
+    <!-- innerText => only visible text -->
+    <!-- textContent => complete text -->
+    <!-- innerHTML => text with HTML -->
+
+    <!-- querySelector >> select first query of any type or querySelectorAll >> select all selected query of any type -->
+
+ <!-- more >> if want to change the color of any particular item -->
+ <ul>
+    <li class = "list-class">one</li>
+    <li class = "list-class">two</li>
+    <li class = "list-class">three</li>
+    <li class = "list-class">four</li>
+ </ul>
+ <!--  -->
+    </div>
+    <!-- querySelectorAll >> returns nodelist >> it is different from array 
+     we cant use direct styling on nodelist i.e. given by querySelectorAll
+    >> styling krne k liye index select krna pdega node list k element ka 
+    >> for ex >> 
+
+        const tempList = document.querySelectorAll('li')
+        undefined
+        tempList
+        NodeList(3) [li, li, li]
+        tempList[0].style.color = "green"
+        'green'
+        tempList[0].style.backgroundColor = "yellow"
+        'yellow'
+
+
+    >> we can use forEach on nodelist...    
+    --> 
+
+    <!-- HTMLcollection pr  forEach nhi lagta -->
+    <!-- agr HTMLcollection pr forEach use krna hai or nodelist pr map use krna hai to un dono ko array me pehle convert krna pdega ....  -->   
+
+     <!-- converting htmlcollection to array 
+            Array.from(value) -->
+
+        <!-- ex :-converting to array and using forEach on HTMLcollection -->
+        <!-- const tempClass = document.getElementsByClassName("list-class")
+             undefined
+             const convertedArray = Array.from(tempClass)
+             undefined
+             convertedArray.forEach( (li) => {
+             li.style.backgroundColor = "blue"
+        })
+             undefined -->
+
+
+</body>
+</html>

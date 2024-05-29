@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body style="background-color: #212121; color: antiquewhite">    
+</body>
+<script>
+    
+
+    function myFunction(title,innerContent,mainContent) {
+    const div = document.createElement('div')
+    console.log(div); // <div></div>
+
+    // adding properties
+    div.className = "main"
+    div.id = Math.round(Math.random() *10 + 1) // generating random id for fun
+
+    // more attributes and custom 
+    div.setAttribute("title", title)
+    // adding "title" with value "generated title"
+    // ye direct value me change krta hai, overwrite nhi krta ...
+
+    // styling
+    div.style.backgroundColor = "green"
+    div.style.padding = "12px"
+
+    // abhi tk jitna v div create kiya hai vo abhi memory me hai lekin web pe display nhi ho raha hai
+    // web page pe attach krne k liye hme document ko batana pdega ki is child ko ya element ko attach kro....
+
+    // element attach krne k liye-->
+    div.innerText = innerContent // ye method value ko overwrite krta hai.....
+    
+    // preferred method
+    const addText = document.createTextNode(mainContent) // creating a text node for  adding text
+    div.appendChild(addText)  // created text node ko element me append krdiya...
+
+    // screen pr attach krne k liye...
+    document.body.appendChild(div)
+    // document ki body me ek child (div) ko append kiya hai , to vo webpage pe display hoga...!    
+    }
+    
+    myFunction("DOM", "Document Object Model", "The Document Object Model (DOM) is a cross-platform and language-independent interface that treats an HTML or XML document as a tree structure wherein each node is an object representing a part of the document. The DOM represents a document with a logical tree. Each branch of the tree ends in a node, and each node contains objects. DOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document. Nodes can have event handlers (also known as event listeners) attached to them. Once an event is triggered, the event handlers get executed.")
+    
+</script>
+
+</html>
