@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM- edit/remove</title>                  
+</head>
+<body style="background-color: #212121; color: #fff;">
+        <ul class="language">
+            <li>Javascript</li>
+        </ul>
+</body>
+    <script>
+        // work - add a list item after "javascript"
+        // 1. >> hm function design krke kr skte hain >> sbse basic way
+
+        function addlanguage(languageName) {
+            // sbse pehle list-item create krna hai >> then >> ul ko select krna hai or then >> new list-item ko append kr denge
+            // create item > add text > append 
+            const li = document.createElement('li')
+            li.innerHTML = languageName // adding text inside li
+            document.querySelector('.language').appendChild(li) // pehle .className se select kiya or uspe directly appendChild kiya 'li' ko hm kisi variable me store krke v kr skte hain...
+             // jaha vi attach krna hai waha appendChild krdo...
+        }
+        // function call
+        addlanguage('python')
+        addlanguage('type-script')
+        addlanguage('c++')
+
+        // jb bhi hm ise appendChild krne ko khte hai to usko sara ka sara tree traverse krna pdta hai end tk jaane k liye or append krne k liye , 100 , 1000 ya jyada value me problem hoti hai is way se ,,,,, q ki end tak jane k liye hr baar method run hoga to tree ko complete traverse krke jana pdega 
+        //jitni baar vi method run ho raha hai utni hi baar tree traverse ho raha hai.....(optimisation issue!)
+
+
+        // 2. >> optimisation way se
+        function addOptiLanguage(languageName) {
+            // create element(list-item) mandatory
+            const li = document.createElement('li')
+            // appendChild krenge
+            li.appendChild(document.createTextNode(languageName))
+
+            // -----------------------------------------------
+            // ((const addText = document.createTextNode(languageName) // aise variable me store krke vi kr skte hai then hme..
+            // li.appendChild(addText) // isme variable pass krna pdega ))
+            // -----------------------------------------------
+            document.querySelector('.language').appendChild(li)
+        }
+
+        addOptiLanguage('Ruby')
+        addOptiLanguage('java')
+
+        // working dono method me same ho rhi hai lekin 2nd method optimised hai q ki element krte time isme hme complete tree ko traverse nhi krna pdta or ist wale me hr baar function run hoga to tree ko completely traverse krna pdta hai.....isliye hmesha 2nd means appendChild wala optimsed method use/prefer kre/...
+        
+        // how to edit:-
+        const secondLanguage = document.querySelector('li:nth-child(2)') // first, select the element
+        console.log(secondLanguage) // "PYTHON" selected
+
+        const newLi = document.createElement('li') // created a new list-item with name "newLi"
+        newLi.textContent = "Mojo" // adding text to newLi >> ise innerHTML se vi kr skte hain
+        // newLi.innerHTML = "Mojo" // valid
+        secondLanguage.replaceWith(newLi) // replacing 
+
+
+
+
+        // edit:- replacing javascript with type-script
+        const editEl = document.querySelector('li:first-child')
+        console.log(editEl);
+        editEl.outerHTML = '<li>TypeScript</li>' // outerHTML se change kr skte hain lekin us situation me hme complete html ki value deni pdegi
+
+
+        // edit:- the last element
+        // const lastLanguage = document.querySelector('li:last-child')
+        // console.log(lastLanguage);
+        // lastLanguage.innerHTML = "php" // using innerHTML
+        // lastLanguage.outerHTML = '<li>php</li>' // using outerHTML
+         
+        // using textContent
+        // const lastLanguage = document.querySelector('li:last-child')
+        // console.log(lastLanguage);
+
+        // const anotherElement = document.createElement('li')
+        // anotherElement.textContent = "php"
+
+        // lastLanguage.replaceWith(anotherElement) 
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // remove :-
+        const myLastLanguage = document.querySelector('li:last-child')
+        myLastLanguage.remove() // it removes the selected element
+
+
+
+        </script>      
+        
+</html>
