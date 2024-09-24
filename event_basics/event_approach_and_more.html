@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing images</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+   <!-- 1st approach of events -->
+   <!-- <img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" onclick="alert('owl image by ist approach')">  --> <!-- tag k ander hi event pass krna ....not a feasable or good approach-->
+</body>
+<script>
+    // js me jitne vi events hote hai vo sequentially run hote hai but kuch exceptions bhi hote hain .......
+
+
+     // 2nd approach  >> still not a gd approach
+        // document.getElementById('owl').onclick = function(){
+        // alert('owl image by 2nd approach')
+    //  }
+
+
+     // 3rd approach and best approach (give many functionality like propagation)
+     // use addEventListener
+
+     // ist parameter > type of event
+     // 2nd parameter > function(){}
+     // 3rd paramter > false (which is default) and true
+
+     
+    //  document.getElementById('owl').addEventListener('click', function(){
+    //     alert('owl clicked by 3rd approach')
+    //  }, false)
+
+     // 4th approach which is very old > .attachEvent >> jaise addEventListener
+     // 5th approach which is also very old > .on >> in jQuery
+
+
+
+     // More about event :-
+        //  document.getElementById('owl').addEventListener('click', function(e){
+            // console.log(e); // PointerEvent which is object and having so many imp and useful properties.
+        //  }, false) // false is a default 3rd parameter
+
+
+         // useful and important eventa :-
+        //  type of events like keyboard and mouse events
+        // timestamp >> time, date, activity etc. type
+        // preventDefault >> kisi bhi cheez ka default behaviour change krna ya usko rok dena , jaise recent file me kiya tha form submit krte time to uska default behaviour tha ki vo submit ho jayega , usko preventDefault use krke stop kr diya tha , anchor tag pr click k baad hone wala navigation v rok skte hai is preventDefault se
+        // target 
+        // toElement
+        // srcElement
+        // currentTarget
+
+        // clientX
+        // clientY
+        // offset
+        // screenX
+        // screenY
+        // tiltX (position related)
+        // tiltY (position related)
+
+        // altkey, ctrlkey, shiftkey >> (in jaisi specials keys ka bhi access mil jata hai press hui hai ya nahi... through events)
+        // keyCode // keyboars se related events
+
+        //  <!-- ***************************************************************************************** -->
+        // EVENT PROPAGATION 
+            
+        // 1.
+        // document.getElementById('owl').addEventListener('click', function(e){
+        // console.log(e); 
+        // }, false) 
+        // // 2.
+        // document.getElementById('owl').addEventListener('click', function(e){
+        // console.log(e); 
+        // }, true) 
+        
+        // normal console me 1 or 2 mtlb false(Default) or true me koi vi difference nhi milega
+
+        // Event propagation ke 2 context hote hai > 1. Event Bubbling      2. Event Capturing
+        // mostly use default i.e. false ka hota hai in mostly fields which is also called Event Bubbling, but in some cases hme event capturing ka v use krna pdta hai
+
+        // lets try with example:-
+        //  see :- hm use krenge ul ki id i.e. images or ul k ander jo image hai uski id i.e. owl ko 
+         // clearly jo ul k ander hi to li hai
+
+        // using ids of both ul and owl image
+            
+        // accessing id of ul > #images  .....3
+        //  document.getElementById('images').addEventListener('click', function(e){
+        //     console.log('clicked using id of ul');  // > 5
+        //  }, false) 
+
+         // accessing id of owl image > #owl ..... 4
+        //  document.getElementById('owl').addEventListener('click', function(e){
+        //     console.log('owl is clicked');   // > 6
+        //  }, false) 
+
+         // 3/4 dono code same likhe hai but jo target ids hai vo different rakhi hai, so how syntax will work and konsi value kb kaise print hogi vo important hai .....
+
+        //  SOLUTION >> agr hm simply kisi vi image pe click krte hai jo ki ul k ander aati hai to (5) print hoga which is normal cuz koi or dusra element attach nhi hai or single normal console hai to wo hi print ho jayega......, but lekin agr hm owl wali image pe click krte hai to ???
+        // owl image ek list item hai jo ki ul with id 'images' k ander aata hai to jaise hi hm owl wali image pe click krenge to simply ul wala bhi active hoga q ki ul k ander li or li k ander image hai to jb hm owl wali pe click krenge to top wala i.e. ul bhi active hoga.... ul active to hoga but pehle ul wala content print hoga ya owl wala context print hoga?
+        // jaise hi hm owl image pe click krenge to pehle (6) or uske baad (5) print hoga ! 
+        // reason >>  due to event propagation :- hmne sbse pehle inner element pe click kiya jo ki image tha uske baad li or uske baad ul (bottom to top approaching) > to hmari script track kr rahi hai bade element ko inside to outside mtlb lower to higher element to usko khte hai bubbling context of event propagation
+        // agr hm false use nhi krte hai to vi same bubbling hi context follow hoga q ki by default parameter false hi hota hai or false me bubbling context follow hota hai jo ki inside to outside element ko track krta hai .....!
+
+        // capturing mode/context value (true)
+
+        // document.getElementById('images').addEventListener('click', function(e){
+        //     console.log('clicked using id of ul');  // > 5
+        //  }, true) 
+
+        //  // accessing id of owl image > #owl ..... 4
+        //  document.getElementById('owl').addEventListener('click', function(e){
+        //     console.log('owl is clicked');   // > 6
+        //  }, true) 
+
+        // lekin agr true value means capturing mode use krte hai to vo jata hai top to bottom mtlb pehle (5) or then (6) print hoga .....opposite to bubbling mode
+
+        // koi glt ya shi nhi hai depend krta hai ki apka use case kya hai or need kya hai
+
+         // stopPropagation:- jb hume apne event ki bubbling nhi chahte, means agr humne top element me bhi script laga rakhi or chahte ki inner event separate rahe to us case me hm iska use krte hai 
+         // ex:-
+        //  document.getElementById('owl').addEventListener('click', function(e){
+            // console.log('owl is clicked');   // 11
+            // we can simply use 
+            // e.stopPropagation() // isko use krne k baad  // 11 sirf print hoga lekin uper jaha ye method use nhi kiya tha vaha top element wala event vi run hoga....
+            // stopPropagation() is very similar to preventDefault()
+        // }, false) 
+
+            
+            
+        // More :- preventDefault
+        // document.getElementById('google').addEventListener('click', function(e){
+        //     console.log('google clicked');
+        //     e.preventDefault() // iske default  behaviour run nhi hoga mtlb google.com open nhi hoga 
+        //     e.stopPropagation() // to stopPropagation 
+        // },false)
+
+
+
+// project or example for better understanding
+// work :- hm kisi vi li mtlb image pe click kre to vo invisible ho jaye
+
+
+// step 1. >> select all images >> through id of all images of ul
+document.querySelector('#images').addEventListener('click',function(e){
+    // console.log(e); // consoling event
+    // console.log(e.target); // target of the event
+
+    // kuch scenarios me hame target to mil gaya lekin hm uske parent ko select krna chahte hai
+    // hamare case me hme image remove nhi krni but hame to pura li hi remove krna hai warna sirf image remove krne se to vo li ka point vhi rh jayega lekin hame phir complete li remove krna pdega....
+
+    // console.log(e.target.parentNode); // target k baad hm aage vi value access kr skte hain >> is method se 
+    // isse 164 line se particular hr image ka li access ho jayega
+
+    // agr hame ise remove krna hai to
+    // let removeIt = e.target.parentNode // yaha se jaise 164 me hamne 164 ko access kiya hai to waise hi access kiya hai
+    // removeIt.remove() // 168 me jo li access kiya hai usko yaha remove krdiya hai 
+
+    // one more method for remove
+    // removeIt.parentNode.removeChild(removeIt)  // line 168 me hamne li access kiya hai jo ki parent hai image ka or usko removeIt variable me hold kiya hai or 172 line me hamne removeIt variable ka parentNode access kiya hai jo ki ul hai or phir ul ka removeChild krdiya jo ki li hi hai or uske ander ek parameter pass krdiya jo ki hai removeIt i.e. li to particular li remove ho jayega....
+
+    // imp:- lekin agr images k bhaar kisi li pe click krte hai to pura hi remove ho jayega, q ki agr image pe click krte hai to theek hai lekin li pe click krte hai to vo sara remove ho jata hai , q ki li ka parent to ul hai 164 me hamare pass ul aya or phir hamre usko 168 me varible me hold krdiya to phir usko remove krdiya to simply hamne idhr ul ko remove krdiya...... to uske liye
+    
+    console.log(e.target.tagName); // yaha se tagname milega
+    // use checks         
+    if(e.target.tagName === 'IMG'){
+        // can also print id 
+        console.log(e.target.id);
+        let removeIt = e.target.parentNode
+        removeIt.remove()
+    }
+},false)
+
+</script>
+</html>
