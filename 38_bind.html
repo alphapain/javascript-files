@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>Button Clicked...</button>
+</body>
+<script>
+    class React {
+        constructor() {
+            this.library = "React"
+            this.server = "https://localhost:300"
+
+            // refernce le rahe hai button ka constructor k ander, q ki jaise new object create kiya hai to constructor reference dega in sbko elements ka like button.....
+            
+            // #1.
+            document.querySelector('button').addEventListener('click', this.handleClick) // handleClick ka reference nhi hai isliye this use kiya hai....
+            // to yaha tk hme jaise hi button click hota hai to button ka reference to mil jata hai console me...button clicked output rhega...    lekin hm uper handleClick ko use kr rhe hai or handleClick me to this.server ko v access kiya hai but uski value access nhi ho rahi hai or jb sirf console.log(this) kr rhe hai to complete button ka reference mil raha hai lekin this.server ka reference nhi mil raha hai to uske liye ?
+
+            // uske liye hm aisi situation me 'bind' keyword use krte hai.....bind manually/forcefully sbhi variable or this ko us method k saath attach kr deta hai
+            
+            // #2.
+            document.querySelector('button').addEventListener('click', this.handleClick.bind(this)) // bind ko use krkte use inside this pass krdena hai jisse vo rest sbhi this ka access forcefully associate krle...
+
+            // bind use krne k baad :- this.server, this.library, this or jitne bhi this hm create krenge un sbka access hme mil jayega.......
+
+            // you can see difference b/w #1 and #2.
+            }
+
+
+
+        // my requirement :- // jaise hi new object bane , button ka reference mil jaye or ek method ko handleClick ka to vo kuch msg display krde....
+
+        handleClick(){
+            console.log('button clicked');
+
+            console.log(this); // output after using bind :- React {library: 'React', server: 'https://localhost:300'}
+            
+            console.log(this.server); // server ki value access kr rh h // output after using bind :- https://localhost:300
+            
+            
+        }
+    }
+    const app = new React() // making new instance
+</script>
+</html>
