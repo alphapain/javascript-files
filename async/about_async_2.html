@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+</head>
+<body>
+    <h1> Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+
+<script>
+    //  setInterval
+    // setInterval(() => {
+    //     console.log('Deep Rajput', Date.now());
+    // }, 1000);
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    // // isi trh iska reference bhi pass kr skte hai kisi variable me assign krke 
+    // const sayName = () => {
+    //     console.log('Deep Rajput', Date.now());
+    // };
+
+    // setInterval(sayName,3000)
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// iske ander parameter bhi pass kr skte hai
+// const sayName = function(str){
+//     console.log(str, Date.now());
+// }
+
+// setInterval(sayName,15000,"Hi")
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// clearInterval() >> same clearTimeout() ki trh reference pass krna pdega variable me assign krke setInterval ko 
+
+// declaring function and assigning it to a variable
+const sayName = function(str){
+    console.log(str, Date.now());
+}
+
+// assinging of setInterval for use of its reference
+const usingClearInterval = setInterval(sayName,10000,"Hi")
+
+// using clearInterval()
+clearInterval(usingClearInterval) // now it will work properly
+
+
+
+
+
+
+
+
+</script>
+</html>

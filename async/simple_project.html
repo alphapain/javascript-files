@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+</head>
+<body>
+    <h1> Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+
+<script>
+    
+   document.querySelector('#start').addEventListener('click', function(){
+        startButton = setInterval(function(){
+            console.log('setInterval is running...');
+        },2000)
+   })
+
+document.querySelector('#stop').addEventListener('click', function(){
+    clearInterval(startButton)
+    console.log('setInterval is stopped!');
+})
+</script>
+</html>

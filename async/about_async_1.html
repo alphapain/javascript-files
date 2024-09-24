@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+</head>
+<body>
+    <h1> Chai aur code</h1>
+    <h2> By Hitesh Chaudhary</h2>
+    <button id="stop">Stop</button>
+</body>
+
+<script>
+    //setTimeout() >> function/method 
+    // 1.
+
+    // setTimeout(function(){ // runs code one time after given time period
+    //     console.log('Deep Rajput');
+    // },2000)
+
+    // 2. jo uper function declare kiya hai uska reference bhi pass kr skte hain
+    // declare a function >
+    function sayName(){
+        console.log('Deep Rajput');
+    }
+
+    // passing reference in sayTimeout()
+    setTimeout(sayName, 2000); // yaha reference pass hai sirf function ka >> sayName = reference,  
+    // but      >> sayName() =  execute
+    // to hame reference pass krna hai na ki execute krna hai
+
+
+    // more:-
+    // document.querySelector('h1').innerHTML = 'best JS series'; // ye to normal way me html change krdega h1 ki , but ise hm setTimeout() kre to :-
+
+    function changeInnerHTMl(){
+        document.querySelector('h1').innerHTML = 'best JS series'
+    }
+    // simple function me wrap krke uska reference pass krdiya, lekin hm function ko variable me assigne krke variable ko bhi pass kr skte hai...
+    setTimeout(changeInnerHTMl,2000)
+
+
+
+// lekin agr hmne ek setTimeout() laga diya hai to ye bhi pata hone chahiye ki usko kaise rok skte hai, agr utni der m vo event nhi hota hai to koi way hona chahiye ki jisse m us event ko hone se rokna chahta hai aisi situation hai to
+
+// ex:- agr m 2 sec jo ki 2000 uper given hai se phle stop button ko click krdeta hu to text change na ho wahi chai aur code hi rahe
+
+// to uske liye :- clearTimeout() >> clearTimeout normally run nhi hoga , usko run krne k liye reference ki need hoti hai setTimeout ki jo clear krna hai uski
+
+// to usko run krne k liye pehle setTimeout ko variable me refer krna pdega then uska reference pass krna pdega
+
+// creating new function and assigning it to a variable
+const changeH2 = function newText(){
+document.querySelector('h2').innerHTML = 'by HITESH CHAUDHARY'}
+// yaha hamne simple h2 ko change krdiya hai
+const assignVariable = setTimeout(changeH2,2000)
+
+// using clearTimeout on changeH2
+// clearTimeout(changeH2) // wrong way
+
+// clearTimeout() use krne k liye setTimeout ko variable me assign krke uska reference pass krna pdega
+// clearTimeout(assignVariable) // correct way 
+
+// but aise krne ka v fayda nhi bcoz pehle setTimeout diya or phir baad m clearTimeout diya to no use :) to ise event k through kaise krenge
+
+document.querySelector('#stop').addEventListener('click', function(e){
+    clearTimeout(assignVariable)
+    console.log('stopped!');
+
+})
+
+
+</script>
+</html>
